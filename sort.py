@@ -219,37 +219,52 @@ def SelS(lista):
 # Fonte: https://www.programiz.com/dsa/heap-sort
 # !!! : Necessário adaptar para contabilizar as trocas e comparações
 
-def heapify(arr, n, i):
-      # Find largest among root and children
-      largest = i
-      l = 2 * i + 1
-      r = 2 * i + 2
-  
-      if l < n and arr[i] < arr[l]:
-          largest = l
-  
-      if r < n and arr[largest] < arr[r]:
-          largest = r
-  
-      # If root is not largest, swap with largest and continue heapifying
-      if largest != i:
-          arr[i], arr[largest] = arr[largest], arr[i]
-          heapify(arr, n, largest)
-  
+def heapify(arr, n, i, trocas, comparacoes):
+    trocas = comparacoes = 0
+    # Find largest among root and children
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[i] < arr[l]:
+        comparacoes = comparacoes + 1
+        largest = l
+
+    if r < n and arr[largest] < arr[r]:
+        comparacoes = comparacoes + 1
+        largest = r
+
+    # If root is not largest, swap with largest and continue heapifying
+    if largest != i:
+        comparacoes = comparacoes + 1
+        trocas = trocas + 1
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest, trocas, comparacoes)
+
+    return {'trocas': trocas, 'comparacoes': comparacoes}
+    
   
 def HepS(arr):
-      n = len(arr)
-  
-      # Build max heap
-      for i in range(n//2, -1, -1):
-          heapify(arr, n, i)
-  
-      for i in range(n-1, 0, -1):
-          # Swap
-          arr[i], arr[0] = arr[0], arr[i]
-  
-          # Heapify root element
-          heapify(arr, i, 0)
+    trocas = comparacoes = 0
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n//2, -1, -1):
+        h = heapify(arr, n, i, 0, 0)
+        trocas = trocas + h['trocas']
+        comparacoes = comparacoes + h['comparacoes']
+
+    for i in range(n-1, 0, -1):
+        # Swap
+        trocas = trocas + 1
+        arr[i], arr[0] = arr[0], arr[i]
+
+        # Heapify root element
+        h = heapify(arr, i, 0, 0, 0)
+        trocas = trocas + h['trocas']
+        comparacoes = comparacoes + h['comparacoes']
+    return {'trocas': trocas, 'comparacoes': comparacoes}
+
 
 # Timsort (TimS)
 # Fonte: https://www.geeksforgeeks.org/timsort/
@@ -396,7 +411,7 @@ def MerS(alist):
 teste = [56,1,8,2,3,4,22,546,2]
 ordenado = list(teste)
 
-funcao = SelS
+funcao = HepS
 
 retorno = funcao(ordenado)
 print(teste)
