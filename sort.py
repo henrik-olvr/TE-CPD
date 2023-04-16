@@ -22,60 +22,80 @@ def ISBL(array):
 # Fonte: https://gist.github.com/danielmatoscastro/1392e5816a436553076b2361c4bbc67d
 # !!! : Necessário adaptar para contabilizar as trocas e comparações
 
-def busca_binaria(lista, inicio, fim, elemento):
+def busca_binaria(lista, inicio, fim, elemento, comparacoes):
     meio = ((fim - inicio) // 2) + inicio
 
+    comparacoes = comparacoes + 1 # faz sempre 1 comparação, entrando obrigatoriamente em uma das condições
     if lista[meio] == elemento or inicio >= fim:
-        return meio
+        #return [meio]
+        return {'resultado' : meio, 'comparacoes': comparacoes}
     elif lista[meio] < elemento:
-        return busca_binaria(lista, meio+1, fim, elemento)
+        return busca_binaria(lista, meio+1, fim, elemento, comparacoes)
     else:
-        return busca_binaria(lista, inicio, meio-1, elemento)
+        return busca_binaria(lista, inicio, meio-1, elemento, comparacoes)
 
 
 def ISBB(lista):
+    trocas = comparacoes = 0
     for i in range(len(lista)):
+        comparacoes = comparacoes + 1
         elemento = lista[i]
         j = i-1
 
-        posicao = busca_binaria(lista, 0, j, elemento)
+        busca = busca_binaria(lista, 0, j, elemento, 0)
+        posicao = busca['resultado']
+        comparacoes = comparacoes + busca['comparacoes']
 
         while j >= posicao:
+            trocas = trocas + 1
             lista[j+1] = lista[j]
             j = j-1
 
         if lista[posicao] <= elemento:
+            trocas = trocas + 1
             lista[posicao+1] = elemento
         else:
+            trocas = trocas + 1
             lista[posicao+1] = lista[posicao]
             lista[posicao] = elemento
+
+    return {'trocas':trocas, 'comparacoes':comparacoes}
 # Shell sort (SheS)
 # Fonte: https://panda.ime.usp.br/panda/static/pythonds_pt/05-OrdenacaoBusca/OShellSort.html
 # !!! : Necessário adaptar para contabilizar as trocas e comparações
 
 def SheS(lista):
+    trocas = comparacoes = 0
     sublistcount = len(lista)//2
     while sublistcount > 0:
-
+      comparacoes = comparacoes + 1
       for startposition in range(sublistcount):
-        gapInsertionSort(lista,startposition,sublistcount)
-
-      print("After increments of size",sublistcount,
-                                   "The list is",lista)
+        gap = gapInsertionSort(lista,startposition,sublistcount)
+        trocas = trocas + gap['trocas']
+        comparacoes = comparacoes + gap['comparacoes']
 
       sublistcount = sublistcount // 2
 
+    return {'trocas': trocas, 'comparacoes': comparacoes}
+
 def gapInsertionSort(lista,start,gap):
+    trocas = comparacoes = 0
     for i in range(start+gap,len(lista),gap):
 
         currentvalue = lista[i]
         position = i
 
         while position>=gap and lista[position-gap]>currentvalue:
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
+
             lista[position]=lista[position-gap]
             position = position-gap
 
+        trocas = trocas + 1
         lista[position]=currentvalue
+
+    return {'trocas': trocas, 'comparacoes': comparacoes}
 
 # Bubble sort (BubS)
 # Fonte: LET #04
@@ -360,6 +380,12 @@ def MerS(alist):
 
 teste = [56,1,8,2,3,4,22,546,2]
 ordenado = list(teste)
-MerS(ordenado)
+
+funcao = SheS
+
+retorno = funcao(ordenado)
 print(teste)
+
+print(f'Ordenando com a função {funcao.__name__}')
+print(retorno)
 print(ordenado)
