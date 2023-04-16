@@ -39,7 +39,7 @@ def imprimirResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
         tipo = 'inverso'
     else:
         tipo = 'randômico'
-    return f'O algoritmo {algoritmo}, aplicado sobre um array {tipo} com {tamanho} elementos precisou de {trocas} trocas, {comparacoes} comparações e {tempo}ms para ser ordenado.'
+    print(f'O algoritmo {algoritmo}, aplicado sobre um array {tipo} com {tamanho} elementos precisou de {trocas} trocas, {comparacoes} comparações e {tempo}ms para ser ordenado.')
 
 # Mensagens iniciais
 
