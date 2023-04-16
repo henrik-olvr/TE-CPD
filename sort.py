@@ -20,7 +20,7 @@ def ISBL(array):
 
 # Insertion sort com busca binária (ISBB)
 # Fonte: https://gist.github.com/danielmatoscastro/1392e5816a436553076b2361c4bbc67d
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 def busca_binaria(lista, inicio, fim, elemento, comparacoes):
     meio = ((fim - inicio) // 2) + inicio
@@ -62,7 +62,7 @@ def ISBB(lista):
     return {'trocas':trocas, 'comparacoes':comparacoes}
 # Shell sort (SheS)
 # Fonte: https://panda.ime.usp.br/panda/static/pythonds_pt/05-OrdenacaoBusca/OShellSort.html
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 def SheS(lista):
     trocas = comparacoes = 0
@@ -122,31 +122,35 @@ def BubS(array):
 
 # Quick sort randomizado (QukS)
 # Fonte: https://www.geeksforgeeks.org/quicksort-using-random-pivoting/
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 def QukS(lista):
-    return quicksort(lista, 0, len(lista) - 1)
+    return quicksort(lista, 0, len(lista) - 1, 0, 0)
 
-def quicksort(arr, start , stop):
+def quicksort(arr, start , stop, trocas, comparacoes):
     if(start < stop):
-         
+        comparacoes = comparacoes + 1
         # pivotindex is the index where
         # the pivot lies in the array
-        pivotindex = partitionrand(arr,\
-                             start, stop)
+        part = partitionrand(arr,\
+                             start, stop, trocas, comparacoes)
+        pivotindex = part['pivot']
+        trocas = trocas + part['trocas']
+        comparacoes = comparacoes + part['comparacoes']
          
         # At this stage the array is
         # partially sorted around the pivot.
         # Separately sorting the
         # left half of the array and the
         # right half of the array.
-        quicksort(arr , start , pivotindex-1)
-        quicksort(arr, pivotindex + 1, stop)
+        quicksort(arr , start , pivotindex-1, trocas, comparacoes)
+        quicksort(arr, pivotindex + 1, stop, trocas, comparacoes)
+    return {'trocas': trocas, 'comparacoes': comparacoes}
  
 # This function generates random pivot,
 # swaps the first element with the pivot
 # and calls the partition function.
-def partitionrand(arr , start, stop):
+def partitionrand(arr , start, stop, trocas, comparacoes):
  
     # Generating a random number between the
     # starting index of the array and the
@@ -155,9 +159,10 @@ def partitionrand(arr , start, stop):
  
     # Swapping the starting element of
     # the array and the pivot
+    trocas = trocas + 1
     arr[start], arr[randpivot] = \
         arr[randpivot], arr[start]
-    return partition(arr, start, stop)
+    return partition(arr, start, stop, trocas, comparacoes)
  
 '''
 This function takes the first element as pivot,
@@ -167,7 +172,7 @@ according to the pivot, the elements smaller than the
 pivot is places on the left and the elements
 greater than the pivot is placed to the right of pivot.
 '''
-def partition(arr,start,stop):
+def partition(arr,start,stop, trocas, comparacoes):
     pivot = start # pivot
      
     # a variable to memorize where the
@@ -180,12 +185,16 @@ def partition(arr,start,stop):
         # or equal to pivot, shift it to the
         # left side of the partition.
         if arr[j] <= arr[pivot]:
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
             arr[i] , arr[j] = arr[j] , arr[i]
             i = i + 1
+
+    trocas = trocas + 1
     arr[pivot] , arr[i - 1] =\
             arr[i - 1] , arr[pivot]
     pivot = i - 1
-    return (pivot)
+    return {'pivot' : pivot, 'trocas': trocas, 'comparacoes': comparacoes}
  
 # Selection sort (SelS)
 # Fonte: desenvolvido como atividade da disciplina INF01202 no semestre 2021/1
@@ -381,7 +390,7 @@ def MerS(alist):
 teste = [56,1,8,2,3,4,22,546,2]
 ordenado = list(teste)
 
-funcao = SheS
+funcao = QukS
 
 retorno = funcao(ordenado)
 print(teste)
