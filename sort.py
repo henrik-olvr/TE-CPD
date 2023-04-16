@@ -198,16 +198,22 @@ def partition(arr,start,stop, trocas, comparacoes):
  
 # Selection sort (SelS)
 # Fonte: desenvolvido como atividade da disciplina INF01202 no semestre 2021/1
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 def SelS(lista):
+    trocas = comparacoes = 0
     for pos in range(len(lista) - 1):
+        # comparacoes = comparacoes + 1 # em discussão
         min = pos
         for i in range (pos + 1, len(lista)):
+            # comparacoes = comparacoes + 1 # em discussão
             if lista[i] < lista[min]:
+                comparacoes = comparacoes + 1
                 min = i
         if pos != min:
+            trocas = trocas + 1
             lista[pos], lista[min] = lista[min], lista[pos]
+    return {'trocas': trocas, 'comparacoes': comparacoes}
 
 # Heap sort (HepS)
 # Fonte: https://www.programiz.com/dsa/heap-sort
@@ -390,7 +396,7 @@ def MerS(alist):
 teste = [56,1,8,2,3,4,22,546,2]
 ordenado = list(teste)
 
-funcao = QukS
+funcao = SelS
 
 retorno = funcao(ordenado)
 print(teste)
