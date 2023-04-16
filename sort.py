@@ -377,24 +377,30 @@ def TimS(arr):
 # !!! : Necessário adaptar para contabilizar as trocas e comparações
 
 def MerS(alist):
+    # Como o algoritmo atua de forma recursiva, não sei se zerar o numero de trocas e comparaçoes no inicio da execuçao
+    # seria o correto a se fazer. No entanto, o local onde sao feitas as trocas e comparaçoes acredito que esteja correto.
+    trocas = comparacoes = 0
     #print("Splitting ",alist)
     if len(alist)>1:
         mid = len(alist)//2
         lefthalf = alist[:mid]
         righthalf = alist[mid:]
 
-        MerS(lefthalf)
-        MerS(righthalf)
+        lt = MerS(lefthalf)
+        rt = MerS(righthalf)
 
         i=0
         j=0
         k=0
         while i < len(lefthalf) and j < len(righthalf):
+            comaparacoes = comparacoes + 1
             if lefthalf[i] < righthalf[j]:
                 alist[k]=lefthalf[i]
+                trocas = trocas + 1
                 i=i+1
             else:
                 alist[k]=righthalf[j]
+                trocas = trocas + 1
                 j=j+1
             k=k+1
 
@@ -407,6 +413,8 @@ def MerS(alist):
             alist[k]=righthalf[j]
             j=j+1
             k=k+1
+            
+    return {'trocas': trocas, 'comparacoes': comparacoes}
 
 teste = [56,1,8,2,3,4,22,546,2]
 print(f'Array original: {teste}\n')
