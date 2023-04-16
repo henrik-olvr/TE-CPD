@@ -217,7 +217,7 @@ def SelS(lista):
 
 # Heap sort (HepS)
 # Fonte: https://www.programiz.com/dsa/heap-sort
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 def heapify(arr, n, i, trocas, comparacoes):
     trocas = comparacoes = 0
@@ -409,13 +409,16 @@ def MerS(alist):
             k=k+1
 
 teste = [56,1,8,2,3,4,22,546,2]
-ordenado = list(teste)
+print(f'Array original: {teste}\n')
 
-funcao = HepS
+funcoes = [ISBL, ISBB, SheS, BubS, QukS, SelS, HepS, TimS, MerS]
 
-retorno = funcao(ordenado)
-print(teste)
+for i in range(len(funcoes)):
+    f = funcoes[i]
 
-print(f'Ordenando com a função {funcao.__name__}')
-print(retorno)
-print(ordenado)
+    ordenado = list(teste)
+    retorno = f(ordenado)
+
+    print(f'({i+1}) Ordenando com o algoritmo {f.__name__}')
+    print(f'Retorno: {retorno}')
+    print(f'Array ordenado: {ordenado}')
