@@ -6,7 +6,7 @@ import sort
 
 cartoes = [333315, 330000]
 NOME_ARQ = 'randomnumbers'
-NOME_SAIDA = f'R-{cartoes[0]:08d}-{cartoes[1]:08d}'
+NOME_SAIDA = f'R{cartoes[0]:08d}-{cartoes[1]:08d}'
 MAX_ARQ = 10000000
 BYTES_NUM = 4
 
@@ -28,6 +28,18 @@ def obterNumeros(arq, tam):
 
 def escreverLinha(arq, texto):
     arq.write(texto + '\n')
+
+def formatarResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
+    return f'{algoritmo}, {tipo}, {tamanho}, {trocas}, {comparacoes}, {tempo}.'
+
+def imprimirResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
+    if tipo == 'O':
+        tipo = 'ordenado'
+    elif tipo == 'I':
+        tipo = 'inverso'
+    else:
+        tipo = 'randômico'
+    return f'O algoritmo {algoritmo}, aplicado sobre um array {tipo} com {tamanho} elementos precisou de {trocas} trocas, {comparacoes} comparações e {tempo}ms para ser ordenado.'
 
 # Mensagens iniciais
 
@@ -64,6 +76,8 @@ else:
         print('Interrompendo execução.')
         sys.exit(0)
 
+# Variáveis que seram usadas nas comparações
+
 a0 = obterNumeros(arq, 15) # Array obtido sem ordem específica
 a1 = list(a0)
 a1.sort() # Array ordenado de forma crescente
@@ -71,6 +85,9 @@ a2 = list(a1)
 a2.reverse() # Array ordenado de forma decrescente
 
 funcoes = [sort.ISBL, sort.ISBB, sort.SheS, sort.BubS, sort.QukS, sort.SelS, sort.HepS,sort.TimS, sort.MerS]
+
+# Abertura do arquivo de saída
+saida = open(f'{NOME_SAIDA}.txt', 'w')
 
 #print(a0)
 #print(a1)
