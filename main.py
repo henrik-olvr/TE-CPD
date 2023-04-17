@@ -4,9 +4,9 @@ import sort
 
 # Constantes
 
-cartoes = [333315, 314523]
+CARTOES = [333315, 314523]
 NOME_ARQ = 'randomnumbers'
-NOME_SAIDA = f'R{cartoes[0]:08d}-{cartoes[1]:08d}'
+NOME_SAIDA = f'R{CARTOES[0]:08d}-{CARTOES[1]:08d}'
 MAX_ARQ = 10000000
 BYTES_NUM = 4
 FUNCOES = [sort.ISBL, sort.ISBB, sort.SheS, sort.BubS, sort.QukS, 
@@ -49,7 +49,7 @@ def imprimirResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
 
 print('\n\nComparação de Algoritmos de Classificação\n')
 print('Aluno: João Raphael Fontoura Dorneles (333315)')
-print('Aluno: Luiz Henrik Oliveira (314523)') # completar
+print('Aluno: Luiz Henrik Oliveira (314523)')
 print('Disciplina: INF01124 - Classificação e Pesquisa de Dados\n')
 
 # Abertura do arquivo de dados
@@ -88,16 +88,22 @@ a1.sort() # Array ordenado de forma crescente
 a2 = list(a1)
 a2.reverse() # Array ordenado de forma decrescente
 
-
-
 # Abertura do arquivo de saída
 saida = open(f'{NOME_SAIDA}.txt', 'w')
 
-#print(a0)
-#print(a1)
-#print(a2)
+for algoritmo in FUNCOES:
+    for tipo in ['R', 'O', 'I']:
+        for elementos in TAM_ARRAYS_TESTE:
+            if tipo == 'R':
+                array = list(a0)
+            elif tipo == 'O':
+                array = list(a1)
+            else:
+                array = list(a2)
 
-print(formatarResultados('QukS', 'O', 1000, 30, 120, 10))
-imprimirResultados('QukS', 'O', 1000, 30, 120, 10)
+            escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, 'trocas', 'comparacoes', 'tempo'))
+
+#print(formatarResultados('QukS', 'O', 1000, 30, 120, 10))
+#imprimirResultados('QukS', 'O', 1000, 30, 120, 10)
 
 arq.close()
