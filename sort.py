@@ -4,17 +4,17 @@ import random
 
 # Insertion sort com busca linear (ISBL)
 # Fonte: LET #03
-def ISBL(array): 
+def ISBL(lista): 
     trocas = comparacoes = 0
-    for i in range(1, len(array)):             # do segundo ao último (o primeiro faz parte do subarray ordenado)
-        chave = array[i]                       # chave a inserir no subarray ordenado
-        j = i-1                                # último elemento do subarray ordenado         
-        while (j >= 0) and (array[j] > chave): # busca linear da direita para a esquerda no subarray ordenado            
+    for i in range(1, len(lista)):             # do segundo ao último (o primeiro faz parte do sub lista ordenado)
+        chave = lista[i]                       # chave a inserir no sub lista ordenado
+        j = i-1                                # último elemento do sub lista ordenado         
+        while (j >= 0) and (lista[j] > chave): # busca linear da direita para a esquerda no sub lista ordenado            
             comparacoes = comparacoes + 1
-            array[j+1] = array[j]
+            lista[j+1] = lista[j]
             j = j -1
             trocas = trocas + 1
-        array[j+1] = chave
+        lista[j+1] = chave
         trocas = trocas + 1
     return {'trocas':trocas, 'comparacoes':comparacoes}                         # retorna quantidade de operações
 
@@ -100,19 +100,19 @@ def gapInsertionSort(lista,start,gap):
 # Bubble sort (BubS)
 # Fonte: LET #04
 
-def BubS(array): 
+def BubS(lista): 
     trocas = comparacoes = pos_troca = 0
-    qtd_elementos = len(array)-1
+    qtd_elementos = len(lista)-1
     troca = True
     
     while troca:
         troca = False
         for i in range(0, qtd_elementos):
             comparacoes = comparacoes + 1
-            if array[i] > array[i+1]:
-                tmp = array[i]
-                array[i] = array[i+1]
-                array[i+1] = tmp
+            if  lista[i] >  lista[i+1]:
+                tmp =  lista[i]
+                lista[i] =  lista[i+1]
+                lista[i+1] = tmp
                 troca = True  
                 pos_troca = i
                 trocas = trocas + 1
@@ -127,12 +127,12 @@ def BubS(array):
 def QukS(lista):
     return quicksort(lista, 0, len(lista) - 1, 0, 0)
 
-def quicksort(arr, start , stop, trocas, comparacoes):
+def quicksort(lista, start , stop, trocas, comparacoes):
     if(start < stop):
         comparacoes = comparacoes + 1
         # pivotindex is the index where
         # the pivot lies in the array
-        part = partitionrand(arr,\
+        part = partitionrand(lista,\
                              start, stop, trocas, comparacoes)
         pivotindex = part['pivot']
         trocas = trocas + part['trocas']
@@ -143,14 +143,14 @@ def quicksort(arr, start , stop, trocas, comparacoes):
         # Separately sorting the
         # left half of the array and the
         # right half of the array.
-        quicksort(arr , start , pivotindex-1, trocas, comparacoes)
-        quicksort(arr, pivotindex + 1, stop, trocas, comparacoes)
+        quicksort(lista , start , pivotindex-1, trocas, comparacoes)
+        quicksort(lista, pivotindex + 1, stop, trocas, comparacoes)
     return {'trocas': trocas, 'comparacoes': comparacoes}
  
 # This function generates random pivot,
 # swaps the first element with the pivot
 # and calls the partition function.
-def partitionrand(arr , start, stop, trocas, comparacoes):
+def partitionrand(lista , start, stop, trocas, comparacoes):
  
     # Generating a random number between the
     # starting index of the array and the
@@ -160,9 +160,9 @@ def partitionrand(arr , start, stop, trocas, comparacoes):
     # Swapping the starting element of
     # the array and the pivot
     trocas = trocas + 1
-    arr[start], arr[randpivot] = \
-        arr[randpivot], arr[start]
-    return partition(arr, start, stop, trocas, comparacoes)
+    lista[start],  lista[randpivot] = \
+         lista[randpivot],  lista[start]
+    return partition(lista, start, stop, trocas, comparacoes)
  
 '''
 This function takes the first element as pivot,
@@ -172,7 +172,7 @@ according to the pivot, the elements smaller than the
 pivot is places on the left and the elements
 greater than the pivot is placed to the right of pivot.
 '''
-def partition(arr,start,stop, trocas, comparacoes):
+def partition(lista,start,stop, trocas, comparacoes):
     pivot = start # pivot
      
     # a variable to memorize where the
@@ -184,15 +184,15 @@ def partition(arr,start,stop, trocas, comparacoes):
         # if the current element is smaller
         # or equal to pivot, shift it to the
         # left side of the partition.
-        if arr[j] <= arr[pivot]:
+        if  lista[j] <=  lista[pivot]:
             comparacoes = comparacoes + 1
             trocas = trocas + 1
-            arr[i] , arr[j] = arr[j] , arr[i]
+            lista[i] ,  lista[j] =  lista[j] ,  lista[i]
             i = i + 1
 
     trocas = trocas + 1
-    arr[pivot] , arr[i - 1] =\
-            arr[i - 1] , arr[pivot]
+    lista[pivot] ,  lista[i - 1] =\
+             lista[i - 1] ,  lista[pivot]
     pivot = i - 1
     return {'pivot' : pivot, 'trocas': trocas, 'comparacoes': comparacoes}
  
@@ -203,10 +203,8 @@ def partition(arr,start,stop, trocas, comparacoes):
 def SelS(lista):
     trocas = comparacoes = 0
     for pos in range(len(lista) - 1):
-        # comparacoes = comparacoes + 1 # em discussão
         min = pos
         for i in range (pos + 1, len(lista)):
-            # comparacoes = comparacoes + 1 # em discussão
             if lista[i] < lista[min]:
                 comparacoes = comparacoes + 1
                 min = i
@@ -219,18 +217,18 @@ def SelS(lista):
 # Fonte: https://www.programiz.com/dsa/heap-sort
 # Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
-def heapify(arr, n, i, trocas, comparacoes):
+def heapify(lista, n, i, trocas, comparacoes):
     trocas = comparacoes = 0
     # Find largest among root and children
     largest = i
     l = 2 * i + 1
     r = 2 * i + 2
 
-    if l < n and arr[i] < arr[l]:
+    if l < n and  lista[i] <  lista[l]:
         comparacoes = comparacoes + 1
         largest = l
 
-    if r < n and arr[largest] < arr[r]:
+    if r < n and  lista[largest] <  lista[r]:
         comparacoes = comparacoes + 1
         largest = r
 
@@ -238,29 +236,29 @@ def heapify(arr, n, i, trocas, comparacoes):
     if largest != i:
         comparacoes = comparacoes + 1
         trocas = trocas + 1
-        arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest, trocas, comparacoes)
+        lista[i],  lista[largest] =  lista[largest],  lista[i]
+        heapify(lista, n, largest, trocas, comparacoes)
 
     return {'trocas': trocas, 'comparacoes': comparacoes}
     
   
-def HepS(arr):
+def HepS(lista):
     trocas = comparacoes = 0
-    n = len(arr)
+    n = len(lista)
 
     # Build max heap
     for i in range(n//2, -1, -1):
-        h = heapify(arr, n, i, 0, 0)
+        h = heapify(lista, n, i, 0, 0)
         trocas = trocas + h['trocas']
         comparacoes = comparacoes + h['comparacoes']
 
     for i in range(n-1, 0, -1):
         # Swap
         trocas = trocas + 1
-        arr[i], arr[0] = arr[0], arr[i]
+        lista[i],  lista[0] =  lista[0],  lista[i]
 
         # Heapify root element
-        h = heapify(arr, i, 0, 0, 0)
+        h = heapify(lista, i, 0, 0, 0)
         trocas = trocas + h['trocas']
         comparacoes = comparacoes + h['comparacoes']
     return {'trocas': trocas, 'comparacoes': comparacoes}
@@ -290,25 +288,25 @@ def calcMinRun(n):
  
 # This function sorts array from left index to
 # to right index which is of size atmost RUN
-def insertionSort(arr, left, right):
+def insertionSort(lista, left, right):
     for i in range(left + 1, right + 1):
         j = i
-        while j > left and arr[j] < arr[j - 1]:
-            arr[j], arr[j - 1] = arr[j - 1], arr[j]
+        while j > left and  lista[j] <  lista[j - 1]:
+            lista[j],  lista[j - 1] =  lista[j - 1],  lista[j]
             j -= 1
  
  
 # Merge function merges the sorted runs
-def merge(arr, l, m, r):
+def merge(lista, l, m, r):
  
     # original array is broken in two parts
     # left and right array
     len1, len2 = m - l + 1, r - m
     left, right = [], []
     for i in range(0, len1):
-        left.append(arr[l + i])
+        left.append(lista[l + i])
     for i in range(0, len2):
-        right.append(arr[m + 1 + i])
+        right.append(lista[m + 1 + i])
  
     i, j, k = 0, 0, l
  
@@ -316,38 +314,38 @@ def merge(arr, l, m, r):
     # in larger sub array
     while i < len1 and j < len2:
         if left[i] <= right[j]:
-            arr[k] = left[i]
+            lista[k] = left[i]
             i += 1
  
         else:
-            arr[k] = right[j]
+            lista[k] = right[j]
             j += 1
  
         k += 1
  
     # Copy remaining elements of left, if any
     while i < len1:
-        arr[k] = left[i]
+        lista[k] = left[i]
         k += 1
         i += 1
  
     # Copy remaining element of right, if any
     while j < len2:
-        arr[k] = right[j]
+        lista[k] = right[j]
         k += 1
         j += 1
  
  
 # Iterative Timsort function to sort the
 # array[0...n-1] (similar to merge sort)
-def TimS(arr):
-    n = len(arr)
+def TimS(lista):
+    n = len(lista)
     minRun = calcMinRun(n)
  
     # Sort individual subarrays of size RUN
     for start in range(0, n, minRun):
         end = min(start + minRun - 1, n - 1)
-        insertionSort(arr, start, end)
+        insertionSort(lista, start, end)
  
     # Start merging from size RUN (or 32). It will merge
     # to form size 64, then 128, 256 and so on ....
@@ -368,49 +366,58 @@ def TimS(arr):
             # Merge sub array arr[left.....mid] &
             # arr[mid+1....right]
             if mid < right:
-                merge(arr, left, mid, right)
+                merge(lista, left, mid, right)
  
         size = 2 * size
 
 # Merge sort (MerS)
 # Fonte: https://panda.ime.usp.br/panda/static/pythonds_pt/05-OrdenacaoBusca/OMergeSort.html
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
-def MerS(alist):
-    # Como o algoritmo atua de forma recursiva, não sei se zerar o numero de trocas e comparaçoes no inicio da execuçao
-    # seria o correto a se fazer. No entanto, o local onde sao feitas as trocas e comparaçoes acredito que esteja correto.
+def MerS(lista):
+    return merge_sort(lista, 0, 0)
+
+def merge_sort(lista, trocas, comparacoes):
     trocas = comparacoes = 0
-    #print("Splitting ",alist)
-    if len(alist)>1:
-        mid = len(alist)//2
-        lefthalf = alist[:mid]
-        righthalf = alist[mid:]
+    if len(lista)>1:
+        mid = len(lista)//2
+        lefthalf = lista[:mid]
+        righthalf = lista[mid:]
 
-        lt = MerS(lefthalf)
-        rt = MerS(righthalf)
+        lt = merge_sort(lefthalf, 0, 0)
+        rt = merge_sort(righthalf, 0, 0)
+
+        trocas = trocas + lt['trocas'] + rt['trocas']
+        comparacoes = comparacoes + lt['comparacoes'] + rt['comparacoes']
 
         i=0
         j=0
         k=0
         while i < len(lefthalf) and j < len(righthalf):
-            comaparacoes = comparacoes + 1
+            comparacoes = comparacoes + 1
             if lefthalf[i] < righthalf[j]:
-                alist[k]=lefthalf[i]
+                comparacoes = comparacoes + 1
+                lista[k]=lefthalf[i]
                 trocas = trocas + 1
                 i=i+1
             else:
-                alist[k]=righthalf[j]
-                trocas = trocas + 1
-                j=j+1
+                 comparacoes = comparacoes + 1
+                 lista[k]=righthalf[j]
+                 trocas = trocas + 1
+                 j=j+1
             k=k+1
 
         while i < len(lefthalf):
-            alist[k]=lefthalf[i]
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
+            lista[k]=lefthalf[i]
             i=i+1
             k=k+1
 
         while j < len(righthalf):
-            alist[k]=righthalf[j]
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
+            lista[k]=righthalf[j]
             j=j+1
             k=k+1
             
@@ -419,6 +426,14 @@ def MerS(alist):
 teste = [56,1,8,2,3,4,22,546,2]
 print(f'Array original: {teste}\n')
 
+ordenado = list(teste)
+ret = MerS(ordenado)
+
+print(MerS.__name__)
+print(ordenado)
+print(ret)
+
+"""
 funcoes = [ISBL, ISBB, SheS, BubS, QukS, SelS, HepS, TimS, MerS]
 
 for i in range(len(funcoes)):
@@ -430,3 +445,4 @@ for i in range(len(funcoes)):
     print(f'({i+1}) Ordenando com o algoritmo {f.__name__}')
     print(f'Retorno: {retorno}')
     print(f'Array ordenado: {ordenado}')
+"""
