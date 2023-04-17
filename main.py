@@ -1,5 +1,7 @@
 import sys
 import random
+import time
+from datetime import datetime
 import sort
 
 # Constantes
@@ -34,7 +36,7 @@ def escreverLinha(arq, texto):
     arq.write(texto + '\n')
 
 def formatarResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
-    return f'{algoritmo}, {tipo}, {tamanho}, {trocas}, {comparacoes}, {tempo}.'
+    return f'{algoritmo}, {tipo}, {tamanho}, {trocas}, {comparacoes}, {tempo}'
 
 def imprimirResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
     if tipo == 'O':
@@ -73,27 +75,34 @@ for i in range(10):
     #print(f'{n:07d}')
 
 if correto:
-    print('O arquivo foi lido corretamente.')
+    print(f'O arquivo {NOME_ARQ}.bin foi lido corretamente.')
 else:
     print('Não foi possivel ler o arquivo corretamente, verifique o arquivo no diretório e a lista de referência.')
     if (input('Você deseja continuar mesmo assim? (S/N) ').lower() == 'n'):
         print('Interrompendo execução.')
         sys.exit(0)
 
-# Variáveis que serão usadas nas comparações
-
-a0 = obterNumeros(arq, 15) # Array obtido sem ordem específica
-a1 = list(a0)
-a1.sort() # Array ordenado de forma crescente
-a2 = list(a1)
-a2.reverse() # Array ordenado de forma decrescente
-
 # Abertura do arquivo de saída
-saida = open(f'{NOME_SAIDA}.txt', 'w')
 
-for algoritmo in FUNCOES:
-    for tipo in ['R', 'O', 'I']:
-        for elementos in TAM_ARRAYS_TESTE:
+try:
+    saida = open(f'{NOME_SAIDA}.txt', 'w')
+    print(f'O arquivo {NOME_SAIDA}.txt foi aberto com sucesso.')
+except:
+    print(f'Não foi possível criar o arquivo {NOME_SAIDA}.txt, verifique o diretório e tente novamente.')
+    sys.exit(0)
+
+
+escreverLinha(saida, formatarResultados('algoritmo', 'tipo', 'tamanho', 'trocas', 'comparacoes', 'tempo'))
+
+for elementos in TAM_ARRAYS:
+    a0 = obterNumeros(arq, elementos) # Array obtido sem ordem específica
+    a1 = list(a0)
+    a1.sort() # Array ordenado de forma crescente
+    a2 = list(a1)
+    a2.reverse() # Array ordenado de forma decrescente
+
+    for algoritmo in FUNCOES:
+        for tipo in ['R', 'O', 'I']:
             if tipo == 'R':
                 array = list(a0)
             elif tipo == 'O':
@@ -101,9 +110,23 @@ for algoritmo in FUNCOES:
             else:
                 array = list(a2)
 
-            escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, 'trocas', 'comparacoes', 'tempo'))
+            ini = round(time.time()) 
+
+            # aqui entra a operação de ordem
+            metricas = algoritmo(array)
+
+            diferenca = round(time.time()) - ini
+
+            agora = datetime.now()
+            agoraFormatado = agora.strftime("%H:%M:%S")
+
+            print(f'({agoraFormatado})', end=' ')
+            imprimirResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca)
+
+            escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca))
 
 #print(formatarResultados('QukS', 'O', 1000, 30, 120, 10))
 #imprimirResultados('QukS', 'O', 1000, 30, 120, 10)
 
 arq.close()
+saida.close()
