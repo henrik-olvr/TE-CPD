@@ -4,7 +4,7 @@ import sort
 
 # Constantes
 
-cartoes = [333315, 330000]
+cartoes = [333315, 314523]
 NOME_ARQ = 'randomnumbers'
 NOME_SAIDA = f'R{cartoes[0]:08d}-{cartoes[1]:08d}'
 MAX_ARQ = 10000000
@@ -49,7 +49,7 @@ def imprimirResultados(algoritmo, tipo, tamanho, trocas, comparacoes, tempo):
 
 print('\n\nComparação de Algoritmos de Classificação\n')
 print('Aluno: João Raphael Fontoura Dorneles (333315)')
-print('Aluno: Luiz Henrik Oliveira (33xxxx)') # completar
+print('Aluno: Luiz Henrik Oliveira (314523)') # completar
 print('Disciplina: INF01124 - Classificação e Pesquisa de Dados\n')
 
 # Abertura do arquivo de dados
