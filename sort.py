@@ -266,11 +266,12 @@ def HepS(lista):
 
 # Timsort (TimS)
 # Fonte: https://www.geeksforgeeks.org/timsort/
-# !!! : Necessário adaptar para contabilizar as trocas e comparações
+# Adaptado para contabilizar os dados de desempenho (trocas e comparações)
 
 MIN_MERGE = 32
  
 def calcMinRun(n):
+    trocas = comparacoes = 0
     """Returns the minimum length of a
     run from 23 - 64 so that
     the len(array)/minrun is less than or
@@ -281,23 +282,30 @@ def calcMinRun(n):
     """
     r = 0
     while n >= MIN_MERGE:
+        comparacoes = comparacoes + 1
         r |= n & 1
         n >>= 1
-    return n + r
+    #return n + r
+    return {'retorno' : (n + r), 'trocas': trocas, 'comparacoes': comparacoes}
  
  
 # This function sorts array from left index to
 # to right index which is of size atmost RUN
 def insertionSort(lista, left, right):
+    trocas = comparacoes = 0
     for i in range(left + 1, right + 1):
         j = i
         while j > left and  lista[j] <  lista[j - 1]:
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
             lista[j],  lista[j - 1] =  lista[j - 1],  lista[j]
             j -= 1
+    return {'trocas': trocas, 'comparacoes': comparacoes}
  
  
 # Merge function merges the sorted runs
 def merge(lista, l, m, r):
+    trocas = comparacoes = 0
  
     # original array is broken in two parts
     # left and right array
@@ -313,11 +321,16 @@ def merge(lista, l, m, r):
     # after comparing, we merge those two array
     # in larger sub array
     while i < len1 and j < len2:
+        comparacoes = comparacoes + 1
         if left[i] <= right[j]:
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
             lista[k] = left[i]
             i += 1
  
         else:
+            comparacoes = comparacoes + 1
+            trocas = trocas + 1
             lista[k] = right[j]
             j += 1
  
@@ -325,33 +338,43 @@ def merge(lista, l, m, r):
  
     # Copy remaining elements of left, if any
     while i < len1:
+        comparacoes = comparacoes + 1
+        trocas = trocas + 1
         lista[k] = left[i]
         k += 1
         i += 1
  
     # Copy remaining element of right, if any
     while j < len2:
+        comparacoes = comparacoes + 1
+        trocas = trocas + 1
         lista[k] = right[j]
         k += 1
         j += 1
- 
+    return {'trocas': trocas, 'comparacoes': comparacoes}
  
 # Iterative Timsort function to sort the
 # array[0...n-1] (similar to merge sort)
 def TimS(lista):
+    trocas = comparacoes = 0
     n = len(lista)
-    minRun = calcMinRun(n)
+    minRunCall = calcMinRun(n)
+    minRun = minRunCall['retorno']
+    trocas = trocas + minRunCall['trocas']
+    comparacoes = comparacoes + minRunCall['comparacoes']
  
     # Sort individual subarrays of size RUN
     for start in range(0, n, minRun):
         end = min(start + minRun - 1, n - 1)
-        insertionSort(lista, start, end)
+        i = insertionSort(lista, start, end)
+        trocas = trocas + i['trocas']
+        comparacoes = comparacoes + i['comparacoes']
  
     # Start merging from size RUN (or 32). It will merge
     # to form size 64, then 128, 256 and so on ....
     size = minRun
     while size < n:
- 
+        comparacoes = comparacoes + 1
         # Pick starting point of left sub array. We
         # are going to merge arr[left..left+size-1]
         # and arr[left+size, left+2*size-1]
@@ -366,9 +389,13 @@ def TimS(lista):
             # Merge sub array arr[left.....mid] &
             # arr[mid+1....right]
             if mid < right:
-                merge(lista, left, mid, right)
+                comparacoes = comparacoes + 1
+                m = merge(lista, left, mid, right)
+                trocas = trocas + m['trocas']
+                comparacoes = comparacoes + m['comparacoes']
  
         size = 2 * size
+    return {'trocas': trocas, 'comparacoes': comparacoes}
 
 # Merge sort (MerS)
 # Fonte: https://panda.ime.usp.br/panda/static/pythonds_pt/05-OrdenacaoBusca/OMergeSort.html
@@ -394,16 +421,16 @@ def merge_sort(lista, trocas, comparacoes):
         j=0
         k=0
         while i < len(lefthalf) and j < len(righthalf):
-            comparacoes = comparacoes + 1
+            comparacoes = comparacoes + 2
             if lefthalf[i] < righthalf[j]:
                 comparacoes = comparacoes + 1
-                lista[k]=lefthalf[i]
                 trocas = trocas + 1
+                lista[k]=lefthalf[i]
                 i=i+1
             else:
                  comparacoes = comparacoes + 1
-                 lista[k]=righthalf[j]
                  trocas = trocas + 1
+                 lista[k]=righthalf[j]
                  j=j+1
             k=k+1
 
@@ -426,14 +453,6 @@ def merge_sort(lista, trocas, comparacoes):
 teste = [56,1,8,2,3,4,22,546,2]
 print(f'Array original: {teste}\n')
 
-ordenado = list(teste)
-ret = MerS(ordenado)
-
-print(MerS.__name__)
-print(ordenado)
-print(ret)
-
-"""
 funcoes = [ISBL, ISBB, SheS, BubS, QukS, SelS, HepS, TimS, MerS]
 
 for i in range(len(funcoes)):
@@ -445,4 +464,3 @@ for i in range(len(funcoes)):
     print(f'({i+1}) Ordenando com o algoritmo {f.__name__}')
     print(f'Retorno: {retorno}')
     print(f'Array ordenado: {ordenado}')
-"""
