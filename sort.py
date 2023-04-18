@@ -449,7 +449,7 @@ def merge_sort(lista, trocas, comparacoes):
             k=k+1
             
     return {'trocas': trocas, 'comparacoes': comparacoes}
-
+"""
 teste = [56,1,8,2,3,4,22,546,2]
 print(f'Array original: {teste}\n')
 
@@ -464,3 +464,4 @@ for i in range(len(funcoes)):
     print(f'({i+1}) Ordenando com o algoritmo {f.__name__}')
     print(f'Retorno: {retorno}')
     print(f'Array ordenado: {ordenado}')
+"""
