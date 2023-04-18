@@ -141,10 +141,10 @@ for elementos in TAM_ARRAYS:
             escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca))
 
             
-            # SE UMA ORDENACAO DUROS MAIS DO QUE 120 SEGUNDOS, PARAR DE EXECUTAR AS PROXIMAS
+            # SE UMA ORDENACAO DUROS MAIS DO QUE 3600 SEGUNDOS, PARAR DE EXECUTAR AS PROXIMAS
             # A PARTIR DAQUI ELE N EXECUTA MAIS NENHUMA ORDENACAO
             # SE QUISER TIRAR EH SÒ REMOVER OS IFS ABAIXO
-            if (tempo_de_execucao) > 120:
+            if (tempo_de_execucao) > 3600:
                 terminar_execucao = 1
                 break
         if terminar_execucao == 1:
