@@ -110,12 +110,12 @@ for elementos in TAM_ARRAYS:
             else:
                 array = list(a2)
 
-            ini = round(time.time()) 
+            ini = round(time.time() * 1000)
 
             # aqui entra a operação de ordem
             metricas = algoritmo(array)
 
-            diferenca = round(time.time()) - ini
+            diferenca = round(time.time() * 1000) - ini
 
             agora = datetime.now()
             agoraFormatado = agora.strftime("%H:%M:%S")
