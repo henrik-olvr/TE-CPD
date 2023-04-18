@@ -1,6 +1,7 @@
 import sys
 import random
 import time
+import timeit
 from datetime import datetime
 import sort
 
@@ -94,6 +95,10 @@ except:
 
 escreverLinha(saida, formatarResultados('algoritmo', 'tipo', 'tamanho', 'trocas', 'comparacoes', 'tempo'))
 
+# AQUI EH DADO O INICIO DA EXECUCAO DAS ORDENACOES
+pre_execucao = timeit.default_timer()
+print(pre_execucao)
+terminar_execucao = 0
 for elementos in TAM_ARRAYS:
     a0 = obterNumeros(arq, elementos) # Array obtido sem ordem específica
     a1 = list(a0)
@@ -110,21 +115,38 @@ for elementos in TAM_ARRAYS:
             else:
                 array = list(a2)
 
-            ini = round(time.time() * 1000)
+            ini = round(time.time()) 
 
             # aqui entra a operação de ordem
             metricas = algoritmo(array)
 
-            diferenca = round(time.time() * 1000) - ini
-
+            diferenca = round(time.time()) - ini
+         
             agora = datetime.now()
+            
+            # CALCULO DO TEMPO DE EXECUCAO DO CODIGO ATE AQUI
+            tempo_agora = timeit.default_timer()
+            tempo_de_execucao = tempo_agora - pre_execucao
+            print(tempo_de_execucao)
+       
             agoraFormatado = agora.strftime("%H:%M:%S")
-
+            
             print(f'({agoraFormatado})', end=' ')
             imprimirResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca)
 
             escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca))
-
+            
+            # SE UMA ORDENACAO DUROS MAIS DO QUE 120 SEGUNDOS, PARAR DE EXECUTAR AS PROXIMAS
+            # A PARTIR DAQUI ELE N EXECUTA MAIS NENHUMA ORDENACAO
+            # SE QUISER TIRAR EH SÒ REMOVER OS IFS ABAIXO
+            if (tempo_de_execucao) > 120:
+                terminar_execucao = 1
+                break
+        if terminar_execucao == 1:
+            break
+    if terminar_execucao == 1:
+        break
+        
 #print(formatarResultados('QukS', 'O', 1000, 30, 120, 10))
 #imprimirResultados('QukS', 'O', 1000, 30, 120, 10)
 
