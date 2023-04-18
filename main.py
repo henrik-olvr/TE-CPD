@@ -14,7 +14,7 @@ BYTES_NUM = 4
 FUNCOES = [sort.ISBL, sort.ISBB, sort.SheS, sort.BubS, sort.QukS, 
            sort.SelS, sort.HepS,sort.TimS, sort.MerS]
 TAM_ARRAYS = [1000, 10000, 100000, 1000000, 10000000]
-TAM_ARRAYS_TESTE = [5, 100, 500, 1000, 5000]
+TAM_ARRAYS_TESTE = [100, 500, 1000, 5000, 10000]
 
 # Funções
 
@@ -94,7 +94,9 @@ except:
 
 escreverLinha(saida, formatarResultados('algoritmo', 'tipo', 'tamanho', 'trocas', 'comparacoes', 'tempo'))
 
-for elementos in TAM_ARRAYS:
+print('Iniciando análise dos algoritmos.')
+
+for elementos in TAM_ARRAYS_TESTE:
     a0 = obterNumeros(arq, elementos) # Array obtido sem ordem específica
     a1 = list(a0)
     a1.sort() # Array ordenado de forma crescente
@@ -125,8 +127,7 @@ for elementos in TAM_ARRAYS:
 
             escreverLinha(saida, formatarResultados(algoritmo.__name__, tipo, elementos, metricas['trocas'], metricas['comparacoes'], diferenca))
 
-#print(formatarResultados('QukS', 'O', 1000, 30, 120, 10))
-#imprimirResultados('QukS', 'O', 1000, 30, 120, 10)
+print(f'Execução encerrada, os dados foram salvos no arquivo {NOME_SAIDA}.txt.')
 
 arq.close()
 saida.close()

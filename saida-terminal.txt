@@ -1,0 +1,95 @@
+Comparação de Algoritmos de Classificação
+
+Aluno: João Raphael Fontoura Dorneles (333315)
+Aluno: Luiz Henrik Oliveira (314523)
+Disciplina: INF01124 - Classificação e Pesquisa de Dados
+
+O arquivo randomnumbers.bin foi aberto com sucesso.
+O arquivo randomnumbers.bin foi lido corretamente.
+O arquivo R00333315-00314523.txt foi aberto com sucesso.
+(11:28:48) O algoritmo ISBL, aplicado sobre um array randômico com 1000 elementos e precisou de 245949 trocas, 244950 comparações e 1ms para ser ordenado.
+(11:28:48) O algoritmo ISBL, aplicado sobre um array ordenado com 1000 elementos e precisou de 999 trocas, 0 comparações e 0ms para ser ordenado.
+(11:28:48) O algoritmo ISBL, aplicado sobre um array inverso com 1000 elementos e precisou de 500499 trocas, 499500 comparações e 0ms para ser ordenado.
+(11:28:48) O algoritmo ISBB, aplicado sobre um array randômico com 1000 elementos e precisou de 247657 trocas, 9770 comparações e 0ms para ser ordenado.
+(11:28:48) O algoritmo ISBB, aplicado sobre um array ordenado com 1000 elementos e precisou de 2999 trocas, 9978 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo ISBB, aplicado sobre um array inverso com 1000 elementos e precisou de 500989 trocas, 9476 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo SheS, aplicado sobre um array randômico com 1000 elementos e precisou de 15952 trocas, 7955 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo SheS, aplicado sobre um array ordenado com 1000 elementos e precisou de 8006 trocas, 9 comparações e 0ms para ser ordenado.(11:28:49) O algoritmo SheS, aplicado sobre um array inverso com 1000 elementos e precisou de 12706 trocas, 4709 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo BubS, aplicado sobre um array randômico com 1000 elementos e precisou de 244950 trocas, 497205 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo BubS, aplicado sobre um array ordenado com 1000 elementos e precisou de 0 trocas, 999 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo BubS, aplicado sobre um array inverso com 1000 elementos e precisou de 499500 trocas, 499500 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo QukS, aplicado sobre um array randômico com 1000 elementos e precisou de 184 trocas, 184 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo QukS, aplicado sobre um array ordenado com 1000 elementos e precisou de 901 trocas, 901 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo QukS, aplicado sobre um array inverso com 1000 elementos e precisou de 527 trocas, 527 comparações e 0ms para ser ordenado.(11:28:49) O algoritmo SelS, aplicado sobre um array randômico com 1000 elementos e precisou de 996 trocas, 5464 comparações e 1ms para ser ordenado.
+(11:28:49) O algoritmo SelS, aplicado sobre um array ordenado com 1000 elementos e precisou de 0 trocas, 0 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo SelS, aplicado sobre um array inverso com 1000 elementos e precisou de 500 trocas, 250000 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo HepS, aplicado sobre um array randômico com 1000 elementos e precisou de 2400 trocas, 3351 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo HepS, aplicado sobre um array ordenado com 1000 elementos e precisou de 2496 trocas, 3976 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo HepS, aplicado sobre um array inverso com 1000 elementos e precisou de 1996 trocas, 2411 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo TimS, aplicado sobre um array randômico com 1000 elementos e precisou de 12573 trocas, 17552 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo TimS, aplicado sobre um array ordenado com 1000 elementos e precisou de 5000 trocas, 7601 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo TimS, aplicado sobre um array inverso com 1000 elementos e precisou de 20404 trocas, 22885 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo MerS, aplicado sobre um array randômico com 1000 elementos e precisou de 9976 trocas, 27382 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo MerS, aplicado sobre um array ordenado com 1000 elementos e precisou de 9976 trocas, 19840 comparações e 0ms para ser ordenado.
+(11:28:49) O algoritmo MerS, aplicado sobre um array inverso com 1000 elementos e precisou de 9976 trocas, 20064 comparações e 0ms para ser ordenado.
+(11:28:57) O algoritmo ISBL, aplicado sobre um array randômico com 10000 elementos e precisou de 25206455 trocas, 25196456 comparações e 7ms para 
+ser ordenado.
+(11:28:57) O algoritmo ISBL, aplicado sobre um array ordenado com 10000 elementos e precisou de 9999 trocas, 0 comparações e 0ms para ser ordenado.
+(11:29:15) O algoritmo ISBL, aplicado sobre um array inverso com 10000 elementos e precisou de 50004971 trocas, 49994972 comparações e 18ms para ser ordenado.
+(11:29:20) O algoritmo ISBB, aplicado sobre um array randômico com 10000 elementos e precisou de 25226919 trocas, 130511 comparações e 5ms para ser ordenado.
+(11:29:20) O algoritmo ISBB, aplicado sobre um array ordenado com 10000 elementos e precisou de 30026 trocas, 133589 comparações e 0ms para ser ordenado.
+(11:29:31) O algoritmo ISBB, aplicado sobre um array inverso com 10000 elementos e precisou de 50009086 trocas, 127717 comparações e 12ms para ser ordenado.
+(11:29:31) O algoritmo SheS, aplicado sobre um array randômico com 10000 elementos e precisou de 277178 trocas, 157186 comparações e 0ms para ser 
+ordenado.
+(11:29:31) O algoritmo SheS, aplicado sobre um array ordenado com 10000 elementos e precisou de 120005 trocas, 13 comparações e 0ms para ser ordenado.
+(11:29:31) O algoritmo SheS, aplicado sobre um array inverso com 10000 elementos e precisou de 182553 trocas, 62561 comparações e 0ms para ser ordenado.
+(11:29:50) O algoritmo BubS, aplicado sobre um array randômico com 10000 elementos e precisou de 25196456 trocas, 49966728 comparações e 18ms para ser ordenado.
+(11:29:50) O algoritmo BubS, aplicado sobre um array ordenado com 10000 elementos e precisou de 0 trocas, 9999 comparações e 0ms para ser ordenado.
+(11:30:19) O algoritmo BubS, aplicado sobre um array inverso com 10000 elementos e precisou de 49994972 trocas, 49995000 comparações e 30ms para ser ordenado.
+(11:30:19) O algoritmo QukS, aplicado sobre um array randômico com 10000 elementos e precisou de 7455 trocas, 7455 comparações e 0ms para ser ordenado.
+(11:30:19) O algoritmo QukS, aplicado sobre um array ordenado com 10000 elementos e precisou de 1599 trocas, 1599 comparações e 0ms para ser ordenado.
+(11:30:19) O algoritmo QukS, aplicado sobre um array inverso com 10000 elementos e precisou de 3884 trocas, 3884 comparações e 0ms para ser ordenado.
+(11:30:23) O algoritmo SelS, aplicado sobre um array randômico com 10000 elementos e precisou de 9986 trocas, 77358 comparações e 4ms para ser ordenado.
+(11:30:27) O algoritmo SelS, aplicado sobre um array ordenado com 10000 elementos e precisou de 0 trocas, 0 comparações e 4ms para ser ordenado.
+(11:30:33) O algoritmo SelS, aplicado sobre um array inverso com 10000 elementos e precisou de 5021 trocas, 24937576 comparações e 6ms para ser ordenado.
+(11:30:33) O algoritmo HepS, aplicado sobre um array randômico com 10000 elementos e precisou de 23960 trocas, 33472 comparações e 0ms para ser ordenado.
+(11:30:34) O algoritmo HepS, aplicado sobre um array ordenado com 10000 elementos e precisou de 24997 trocas, 39080 comparações e 0ms para ser ordenado.
+(11:30:34) O algoritmo HepS, aplicado sobre um array inverso com 10000 elementos e precisou de 19997 trocas, 24151 comparações e 0ms para ser ordenado.
+(11:30:34) O algoritmo TimS, aplicado sobre um array randômico com 10000 elementos e precisou de 137389 trocas, 226767 comparações e 0ms para ser 
+ordenado.
+(11:30:34) O algoritmo TimS, aplicado sobre um array ordenado com 10000 elementos e precisou de 89840 trocas, 135877 comparações e 0ms para ser ordenado.
+(11:30:34) O algoritmo TimS, aplicado sobre um array inverso com 10000 elementos e precisou de 184815 trocas, 229655 comparações e 1ms para ser ordenado.
+(11:30:34) O algoritmo MerS, aplicado sobre um array randômico com 10000 elementos e precisou de 133616 trocas, 374522 comparações e 0ms para ser 
+ordenado.
+(11:30:34) O algoritmo MerS, aplicado sobre um array ordenado com 10000 elementos e precisou de 133616 trocas, 262868 comparações e 0ms para ser ordenado.
+(11:30:34) O algoritmo MerS, aplicado sobre um array inverso com 10000 elementos e precisou de 133616 trocas, 271632 comparações e 0ms para ser ordenado.
+(11:45:10) O algoritmo ISBL, aplicado sobre um array randômico com 100000 elementos e precisou de 2500389997 trocas, 2500289998 comparações e 876ms para ser ordenado.
+(11:45:10) O algoritmo ISBL, aplicado sobre um array ordenado com 100000 elementos e precisou de 99999 trocas, 0 comparações e 0ms para ser ordenado.
+(12:43:19) O algoritmo ISBL, aplicado sobre um array inverso com 100000 elementos e precisou de 5000047105 trocas, 4999947106 comparações e 3488ms para ser ordenado.
+(13:02:07) O algoritmo ISBB, aplicado sobre um array randômico com 100000 elementos e precisou de 2500562255 trocas, 1637022 comparações e 1129ms 
+para ser ordenado.
+(13:02:10) O algoritmo ISBB, aplicado sobre um array ordenado com 100000 elementos e precisou de 302867 trocas, 1666062 comparações e 2ms para ser ordenado.
+(13:56:28) O algoritmo ISBB, aplicado sobre um array inverso com 100000 elementos e precisou de 5000083573 trocas, 1602519 comparações e 3258ms para ser ordenado.
+(13:56:32) O algoritmo SheS, aplicado sobre um array randômico com 100000 elementos e precisou de 4417495 trocas, 2917505 comparações e 4ms para ser ordenado.
+(13:56:33) O algoritmo SheS, aplicado sobre um array ordenado com 100000 elementos e precisou de 1500006 trocas, 16 comparações e 2ms para ser ordenado.
+(13:56:35) O algoritmo SheS, aplicado sobre um array inverso com 100000 elementos e precisou de 2342693 trocas, 842703 comparações e 2ms para ser 
+ordenado.
+(15:10:42) O algoritmo BubS, aplicado sobre um array randômico com 100000 elementos e precisou de 2500289998 trocas, 4999153028 comparações e 4447ms para ser ordenado.
+(15:10:43) O algoritmo BubS, aplicado sobre um array ordenado com 100000 elementos e precisou de 0 trocas, 99999 comparações e 0ms para ser ordenado.
+(16:49:38) O algoritmo BubS, aplicado sobre um array inverso com 100000 elementos e precisou de 4999947106 trocas, 4999950000 comparações e 5935ms para ser ordenado.
+(16:49:38) O algoritmo QukS, aplicado sobre um array randômico com 100000 elementos e precisou de 65366 trocas, 65366 comparações e 1ms para ser ordenado.
+(16:49:39) O algoritmo QukS, aplicado sobre um array ordenado com 100000 elementos e precisou de 36937 trocas, 36937 comparações e 0ms para ser ordenado.
+(16:49:40) O algoritmo QukS, aplicado sobre um array inverso com 100000 elementos e precisou de 75444 trocas, 75444 comparações e 1ms para ser ordenado.
+(17:11:23) O algoritmo SelS, aplicado sobre um array randômico com 100000 elementos e precisou de 99991 trocas, 995402 comparações e 1303ms para ser ordenado.
+(17:41:52) O algoritmo SelS, aplicado sobre um array ordenado com 100000 elementos e precisou de 0 trocas, 0 comparações e 1830ms para ser ordenado.
+(18:09:53) O algoritmo SelS, aplicado sobre um array inverso com 100000 elementos e precisou de 51767 trocas, 2424689153 comparações e 1681ms para ser ordenado.
+(18:09:55) O algoritmo HepS, aplicado sobre um array randômico com 100000 elementos e precisou de 239338 trocas, 330822 comparações e 1ms para ser ordenado.
+(18:09:56) O algoritmo HepS, aplicado sobre um array ordenado com 100000 elementos e precisou de 249997 trocas, 383945 comparações e 2ms para ser 
+ordenado.
+(18:09:58) O algoritmo HepS, aplicado sobre um array inverso com 100000 elementos e precisou de 199996 trocas, 241326 comparações e 1ms para ser ordenado.
+(18:09:59) O algoritmo TimS, aplicado sobre um array randômico com 100000 elementos e precisou de 1797864 trocas, 2992537 comparações e 1ms para ser ordenado.
+(18:09:59) O algoritmo TimS, aplicado sobre um array ordenado com 100000 elementos e precisou de 1198400 trocas, 1807623 comparações e 1ms para ser ordenado.
+(18:10:00) O algoritmo TimS, aplicado sobre um array inverso com 100000 elementos e precisou de 2395609 trocas, 2992933 comparações e 1ms para ser ordenado.
+(18:10:01) O algoritmo MerS, aplicado sobre um array randômico com 100000 elementos e precisou de 1668928 trocas, 4741792 comparações e 1ms para ser ordenado.
+(18:10:02) O algoritmo MerS, aplicado sobre um array ordenado com 100000 elementos e precisou de 1668928 trocas, 3302686 comparações e 0ms para ser ordenado.
+(18:10:03) O algoritmo MerS, aplicado sobre um array inverso com 100000 elementos e precisou de 1668928 trocas, 3376736 comparações e 1ms para ser ordenado.
